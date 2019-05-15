@@ -6,14 +6,19 @@ import './tabs/settings.dart' as _thirdTab;
 import './screens/about.dart' as _aboutPage;
 import './screens/support.dart' as _supportPage;
 
+import 'package:nova/homepage.dart';
 void main() => runApp(new MaterialApp(
   title: 'Flutter Starter',
+  debugShowCheckedModeBanner: false,
   theme: new ThemeData(
       primarySwatch: Colors.blueGrey,
       scaffoldBackgroundColor: Colors.white,
       primaryColor: Colors.red[900], backgroundColor: Colors.white
   ),
-  home: new Tabs(),
+  routes: <String, WidgetBuilder>{
+    '/homepage': (BuildContext context) => new Example01(),
+  },
+  home: new Example01(),
   onGenerateRoute: (RouteSettings settings) {
     switch (settings.name) {
       case '/about': return new FromRightToLeft(
@@ -80,7 +85,7 @@ class TabsState extends State<Tabs> {
 
   PageController _tabController;
 
-  var _title_app = null;
+  var _title_app ="Adeus que já te vi";
   int _tab = 0;
 /*
   @override
@@ -108,6 +113,14 @@ class TabsState extends State<Tabs> {
           ),
         ),
         elevation: Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
+      ),
+      body: Container(
+        child: RaisedButton(onPressed: () =>
+            Navigator.push(context, new MaterialPageRoute(
+                builder: (context) =>
+                new Example01())
+            ),
+        ),
       ),
       /*
       //Content of tabs
@@ -166,7 +179,7 @@ class TabsState extends State<Tabs> {
                 ),
               ),
               new ListTile(
-                  leading: new Icon('/'),
+                  leading: new Icon(Icons.accessibility),
                   title: new Text('Reservar'),
                   onTap: () {
                     Navigator.pop(context);
