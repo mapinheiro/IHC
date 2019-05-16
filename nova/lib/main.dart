@@ -5,6 +5,7 @@ import './tabs/dashboard.dart' as _secondTab;
 import './tabs/settings.dart' as _thirdTab;
 import './screens/about.dart' as _aboutPage;
 import './screens/support.dart' as _supportPage;
+import './screens/takeaway.dart' as _takeawayPage;
 
 import 'package:nova/homepage.dart';
 import 'package:nova/menu.dart';
@@ -30,6 +31,10 @@ void main() => runApp(new MaterialApp(
       case '/support': return new FromRightToLeft(
         builder: (_) => new _supportPage.Support(),
         settings: settings,
+      );
+      case '/takeaway': return new FromRightToLeft(
+        builder:(_) => new _takeawayPage.Takeaway(),
+        settings:settings
       );
     }
   },

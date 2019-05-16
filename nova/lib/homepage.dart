@@ -13,7 +13,7 @@ List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
 List<Widget> _tiles = const <Widget>[
 const _HomeTile(Colors.grey, Icons.restaurant,"Ementa"),
 const _HomeTile(Colors.grey, Icons.restaurant,"Take-Away"),
-const _HomeTile(Colors.grey, Icons.book,"Reserva"),
+const _HomeTile(Colors.grey, Icons.calendar_today,"Reserva"),
 const _HomeTile(Colors.grey, Icons.info_outline,"Info"),
 ];
 

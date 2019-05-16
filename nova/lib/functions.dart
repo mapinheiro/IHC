@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nova/homepage.dart';
+import 'package:nova/screens/takeaway.dart';
 
 class Functions {
 
@@ -23,25 +25,42 @@ class Functions {
               ),
             ),
             new ListTile(
-                leading: new Icon(Icons.accessibility),
-                title: new Text('Reservar'),
+                leading: new Icon(Icons.home),
+                title: new Text('Home'),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.of(context).pushNamed('/support');
+                  Navigator.of(context).pushNamed('/homepage');
                 }
             ),
             new ListTile(
-                leading: new Icon(Icons.chat),
-                title: new Text('Support'),
+                leading: new Icon(Icons.restaurant),
+                title: new Text('Ementa'),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.of(context).pushNamed('/support');
                 }
             ),
+           new ListTile(
+                leading: new Icon(Icons.home),
+                title: new Text('Take - Away'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.of(context).pushNamed('/takeaway');
+                }
+            ),
+            new ListTile(
+                leading: new Icon(Icons.calendar_today),
+                title: new Text('Reserva'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.of(context).pushNamed('/homepage');
+                }
+            ),
+
             new Divider(),
             new ListTile(
                 leading: new Icon(Icons.info),
-                title: new Text('About'),
+                title: new Text('Sobre'),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.of(context).pushNamed('/about');
