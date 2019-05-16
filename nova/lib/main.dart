@@ -7,6 +7,7 @@ import './screens/about.dart' as _aboutPage;
 import './screens/support.dart' as _supportPage;
 
 import 'package:nova/homepage.dart';
+import 'package:nova/menu.dart';
 void main() => runApp(new MaterialApp(
   title: 'Flutter Starter',
   debugShowCheckedModeBanner: false,
@@ -16,9 +17,10 @@ void main() => runApp(new MaterialApp(
       primaryColor: Colors.red[900], backgroundColor: Colors.white
   ),
   routes: <String, WidgetBuilder>{
-    '/homepage': (BuildContext context) => new Example01(),
+    '/homepage': (BuildContext context) => new Home(),
+    '/menu':(BuildContext context) => new Menu(),
   },
-  home: new Example01(),
+  home: new Home(),
   onGenerateRoute: (RouteSettings settings) {
     switch (settings.name) {
       case '/about': return new FromRightToLeft(
@@ -85,8 +87,9 @@ class TabsState extends State<Tabs> {
 
   PageController _tabController;
 
-  var _title_app ="Adeus que já te vi";
+  var _title_app = "Adeus que já te vi";
   int _tab = 0;
+
 /*
   @override
   void initState() {
@@ -96,32 +99,39 @@ class TabsState extends State<Tabs> {
   }
 */
   @override
-  void dispose(){
+  void dispose() {
     super.dispose();
     _tabController.dispose();
   }
 
   @override
-  Widget build (BuildContext context) => new Scaffold(
+  Widget build(BuildContext context) =>
+      new Scaffold(
+        //App Bar
+        appBar: new AppBar(
+          title: new Text(
+            _title_app,
+            style: new TextStyle(
+              fontSize: Theme
+                  .of(context)
+                  .platform == TargetPlatform.iOS ? 17.0 : 20.0,
+            ),
+          ),
+          elevation: Theme
+              .of(context)
+              .platform == TargetPlatform.iOS ? 0.0 : 4.0,
+        ),
+        body: Container(
+          child: RaisedButton(onPressed: () =>
+              Navigator.push(context, new MaterialPageRoute(
+                  builder: (context) =>
+                  new Home())
 
-    //App Bar
-      appBar: new AppBar(
-        title: new Text(
-          _title_app,
-          style: new TextStyle(
-            fontSize: Theme.of(context).platform == TargetPlatform.iOS ? 17.0 : 20.0,
+              ),
           ),
         ),
-        elevation: Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
-      ),
-      body: Container(
-        child: RaisedButton(onPressed: () =>
-            Navigator.push(context, new MaterialPageRoute(
-                builder: (context) =>
-                new Example01())
-            ),
-        ),
-      ),
+      );
+}
       /*
       //Content of tabs
       body: new PageView(
@@ -160,7 +170,7 @@ class TabsState extends State<Tabs> {
       ),*/
 
       //Drawer
-      drawer: new Drawer(
+/*      drawer: new Drawer(
           child: new ListView(
             children: <Widget>[
               new Container(
@@ -215,7 +225,8 @@ class TabsState extends State<Tabs> {
   void onTabChanged(int tab) {
     setState((){
       this._tab = tab;
-    });
+    }); */
+
   /*
     switch (tab) {
       case 0:
@@ -230,8 +241,9 @@ class TabsState extends State<Tabs> {
         this._title_app = TabItems[2].title;
         break;
     }*/
-  }
-}
+  //}
+//}
+
 /*
 class TabItem {
   const TabItem({ this.title, this.icon });

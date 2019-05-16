@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:nova/functions.dart';
 
 List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
   const StaggeredTile.count(1, 1),
@@ -10,16 +11,17 @@ List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
 ];
 
 List<Widget> _tiles = const <Widget>[
-const _Example01Tile(Colors.grey, Icons.bookmark,"Ementa"),
-const _Example01Tile(Colors.grey, Icons.restaurant,"Take-Away"),
-const _Example01Tile(Colors.grey, Icons.restaurant,"Reserva"),
-const _Example01Tile(Colors.grey, Icons.info_outline,"Info"),
+const _HomeTile(Colors.grey, Icons.restaurant,"Ementa"),
+const _HomeTile(Colors.grey, Icons.restaurant,"Take-Away"),
+const _HomeTile(Colors.grey, Icons.book,"Reserva"),
+const _HomeTile(Colors.grey, Icons.info_outline,"Info"),
 ];
 
-class Example01 extends StatelessWidget {
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      drawer: Functions.menuL(context),
         appBar: new AppBar(
           title: new Text('Pica-Peixe'),
 
@@ -38,8 +40,8 @@ class Example01 extends StatelessWidget {
   }
 }
 
-class _Example01Tile extends StatelessWidget {
-  const _Example01Tile(this.backgroundColor, this.iconData, this.text);
+class _HomeTile extends StatelessWidget {
+  const _HomeTile(this.backgroundColor, this.iconData, this.text);
 
   final Color backgroundColor;
   final IconData iconData;
