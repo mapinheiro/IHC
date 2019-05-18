@@ -27,7 +27,7 @@ class Takeaway extends StatelessWidget {
               new Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  new Text('Take - Away page content'),
+                  new Text('Não tem nenhum pedido efetuado!'),
             ],
           )
         ],

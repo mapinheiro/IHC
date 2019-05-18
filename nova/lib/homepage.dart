@@ -11,10 +11,10 @@ List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
 ];
 
 List<Widget> _tiles = const <Widget>[
-const _HomeTile(Colors.grey, Icons.restaurant,"Ementa"),
-const _HomeTile(Colors.grey, Icons.restaurant,"Take-Away"),
-const _HomeTile(Colors.grey, Icons.calendar_today,"Reserva"),
-const _HomeTile(Colors.grey, Icons.info_outline,"Info"),
+const _HomeTile(Colors.grey, Icons.restaurant,"Ementa",'/ementa'),
+const _HomeTile(Colors.grey, Icons.restaurant,"Take-Away",'/takeaway'),
+const _HomeTile(Colors.grey, Icons.calendar_today,"Reserva",'/reserva'),
+const _HomeTile(Colors.grey, Icons.info_outline,"Info",'/about'),
 ];
 
 class Home extends StatelessWidget {
@@ -41,11 +41,13 @@ class Home extends StatelessWidget {
 }
 
 class _HomeTile extends StatelessWidget {
-  const _HomeTile(this.backgroundColor, this.iconData, this.text);
+  const _HomeTile(this.backgroundColor, this.iconData, this.text, this.dir);
 
   final Color backgroundColor;
   final IconData iconData;
   final String text;
+  final String dir;
+
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,9 @@ class _HomeTile extends StatelessWidget {
       color: backgroundColor,
       child: new InkWell(
 
-        onTap: () {},
+        onTap: () {
+          Navigator.pushNamed(context, dir);
+          },
         child: new Center(
           child: new Padding(
             padding: const EdgeInsets.all(4.0),
