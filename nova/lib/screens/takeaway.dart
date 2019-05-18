@@ -27,9 +27,24 @@ class Takeaway extends StatelessWidget {
               new Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  Spacer(flex:1),
                   new Text('Não tem nenhum pedido efetuado!'),
-            ],
-          )
+                  Spacer(flex:1),
+                  new RaisedButton(
+                      onPressed: null,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.grey
+
+                        ),
+                        child: const Text('Criar Pedido'),
+                      ),
+
+
+
+                  ),
+                 ],
+          ),
         ],
       ),
     );
