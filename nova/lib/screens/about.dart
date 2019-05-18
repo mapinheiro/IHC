@@ -7,7 +7,7 @@ class About extends StatelessWidget {
     //App Bar
     appBar: new AppBar(
       title: new Text(
-        'About', 
+        'Info',
         style: new TextStyle(
           fontSize: Theme.of(context).platform == TargetPlatform.iOS ? 17.0 : 20.0,
         ),
@@ -21,7 +21,10 @@ class About extends StatelessWidget {
         new Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new Text('About page content')
+            new Text('\nHorário: 12:00 -> 14:00\n'
+                            '19:00 -> 21:00')
+
+
           ],
         )
       ],
