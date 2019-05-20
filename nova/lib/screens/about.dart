@@ -35,12 +35,12 @@ class About extends StatelessWidget {
                             new Center(
                                  child:
                                      Padding(padding: const EdgeInsets.only(top: 127.0),
-                                  child: new FlatButton.icon(
-                                    icon: Icon(Icons.call,size:35,color: Colors.red),
-                                    onPressed: () => launch("tel://21312313"),
-                                     label :Text("21312313",style: TextStyle(fontSize: 30)),
-                                 ),
-                        ),
+                                        child: new FlatButton.icon(
+                                            icon: Icon(Icons.call,size:35,color: Colors.red),
+                                            onPressed: () => launch("tel://21312313"),
+                                            label :Text("21312313",style: TextStyle(fontSize: 30)),
+                                            ),
+                                         ),
                             ),
                   ],
                              /*  new Table(

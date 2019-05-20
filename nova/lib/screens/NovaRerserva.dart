@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:nova/functions.dart';
 class NovaReserva extends StatelessWidget {
 
   //String _nome;
@@ -131,13 +131,13 @@ class NovaReserva extends StatelessWidget {
                   color: Colors.red[900],
                   child: Text('Reservar',
                     style: TextStyle(fontSize: 20, color: Colors.white)),
-                   // onPressed: null,
+                    onPressed: ()=> Navigator.pushNamed(context,'/homepage')
                 ),
                 new RaisedButton(
                   color: Colors.red[900],
                   child: Text('Cancelar',
                       style: TextStyle(fontSize: 20, color: Colors.white)),
-                 // onPressed: null,
+                  onPressed:()=> Navigator.pushNamed(context,'/reserva'),
                 )
               ],
             ),

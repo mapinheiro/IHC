@@ -4,14 +4,16 @@ import 'package:flutter/cupertino.dart';
 import './screens/about.dart' as _aboutPage;
 import './screens/support.dart' as _supportPage;
 import './screens/takeaway.dart' as _takeawayPage;
+import './screens/takeawayAsk1.dart' as _takeawayAsk1Page;
+import './screens/takeawayAsk2.dart' as _takeawayAsk2Page;
+import './screens/takeawayFinal.dart' as _takeawayFinalPage;
 import './screens/reserva.dart' as _reservaPage;
 import './screens/ementa.dart' as _ementaPage;
 
-import 'package:url_launcher/url_launcher.dart' ;
 import 'package:nova/homepage.dart';
 import 'package:nova/menu.dart';
 void main() => runApp(new MaterialApp(
-  title: 'Flutter Starter',
+  title: 'Pica-Peixe',
   debugShowCheckedModeBanner: false,
   theme: new ThemeData(
       primarySwatch: Colors.blueGrey,
@@ -44,6 +46,18 @@ void main() => runApp(new MaterialApp(
       case '/ementa': return new FromRightToLeft(
           builder:(_) => new _ementaPage.Ementa(),
           settings:settings
+      );
+      case '/takeawayAsk1': return new FromRightToLeft(
+        builder: (_) => new _takeawayAsk1Page.TakeawayAsk1(),
+        settings: settings,
+      );
+      case '/takeawayAsk2': return new FromRightToLeft(
+        builder: (_) => new _takeawayAsk2Page.TakeawayAsk2(),
+        settings: settings,
+      );
+      case '/takeawayFinal': return new FromRightToLeft(
+        builder: (_) => new _takeawayFinalPage.TakeawayFinal(),
+        settings: settings,
       );
     }
   },

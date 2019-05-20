@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nova/functions.dart';
+import 'package:nova/screens/takeawayAsk1.dart';
 class Takeaway extends StatelessWidget {
   @override
   Widget build (BuildContext context) {
@@ -35,7 +36,9 @@ class Takeaway extends StatelessWidget {
                  //Spacer(flex:1),
                   new RaisedButton(
 
-                    onPressed: null,
+                    onPressed:() {
+                      Navigator.pushNamed(context,'/takeawayAsk1');
+                    },
                     color: Colors.red[900],
 
 //                      child: Container(
@@ -47,9 +50,6 @@ class Takeaway extends StatelessWidget {
 
 
                     ),
-
-
-
                   ),
                  ],
           ),

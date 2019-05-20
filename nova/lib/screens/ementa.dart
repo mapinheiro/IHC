@@ -80,10 +80,10 @@ class PratoDataSource extends DataTableSource {
   final List<Prato> _prato = <Prato>[
     new Prato('Bife à casa', 7.00, 'Carne'),
     new Prato('Arroz de Pato', 7.00, 'Carne'),
-    new Prato('Bitoque', 5.0, 'Carne'),
+    new Prato('Bitoque', 9.0, 'Carne'),
     new Prato('Picanha', 11.00, 'Carne'),
     new Prato('Bacalhau à Casa', 7.00, 'Peixe'),
-    new Prato('Lulas Rechadas', 9.00, 'Peixe'),
+    new Prato('Lulas Recheadas', 9.00, 'Peixe'),
     new Prato('Bacalhau com natas', 9.0, 'Peixe'),
     new Prato('Polvo à Lagareiro', 9.00, 'Peixe'),
   ];
