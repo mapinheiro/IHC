@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import './tabs/home.dart' as _firstTab;
-import './tabs/dashboard.dart' as _secondTab;
-import './tabs/settings.dart' as _thirdTab;
+
 import './screens/about.dart' as _aboutPage;
 import './screens/support.dart' as _supportPage;
 import './screens/takeaway.dart' as _takeawayPage;
+import './screens/reserva.dart' as _reservaPage;
+import './screens/ementa.dart' as _ementaPage;
+
 import 'package:url_launcher/url_launcher.dart' ;
 import 'package:nova/homepage.dart';
 import 'package:nova/menu.dart';
@@ -35,6 +36,14 @@ void main() => runApp(new MaterialApp(
       case '/takeaway': return new FromRightToLeft(
         builder:(_) => new _takeawayPage.Takeaway(),
         settings:settings
+      );
+      case '/reserva': return new FromRightToLeft(
+          builder:(_) => new _reservaPage.Reserva(),
+          settings:settings
+      );
+      case '/ementa': return new FromRightToLeft(
+          builder:(_) => new _ementaPage.Ementa(),
+          settings:settings
       );
     }
   },

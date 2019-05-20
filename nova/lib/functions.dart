@@ -37,7 +37,7 @@ class Functions {
                 title: new Text('Ementa'),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.of(context).pushNamed('/support');
+                  Navigator.of(context).pushNamed('/ementa');
                 }
             ),
            new ListTile(
@@ -53,7 +53,7 @@ class Functions {
                 title: new Text('Reserva'),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.of(context).pushNamed('/homepage');
+                  Navigator.of(context).pushNamed('/reserva');
                 }
             ),
 
