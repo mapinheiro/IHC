@@ -43,7 +43,7 @@ class TakeawayAsk1 extends StatelessWidget {
                         child: Text('Filtro', style: TextStyle(fontSize: 25, color: Colors.white)),
                       ),
                     ),
-                    SizedBox(height: 50.0),
+                    SizedBox(height: 20.0),
                     new Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[

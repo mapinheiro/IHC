@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:nova/functions.dart';
 
-String dropdownValue = 'Bitoque';
-class TakeawayAsk2 extends StatefulWidget{
+//String dropdownValue = 'Bitoque';
+/*class TakeawayAsk2 extends StatefulWidget{
   TakeawayAsk2State createState()=> TakeawayAsk2State();
 }
-class TakeawayAsk2State extends State<TakeawayAsk2> {
+*/
+class TakeawayAsk2 extends StatelessWidget  {
   @override
   Widget build (BuildContext context) {
     return new Scaffold(
 
       //App Bar
+
       drawer: Functions.menuL(context),
       appBar: new AppBar(
         title: new Text(
@@ -27,26 +29,31 @@ class TakeawayAsk2State extends State<TakeawayAsk2> {
       ),
 
       //Content of tabs
-      body:  new SingleChildScrollView(
-        child: new Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+     body:  new SingleChildScrollView(
+
+      child:
+          new Row(
             children: <Widget>[
-              DropdownButton<String>(
-               value: dropdownValue,
-               onChanged: (String newValue) {
-                 setState(() {
-                   dropdownValue = newValue;
-          });
-        },
-        items: <String>['Bitoque','Batata Frita', 'Arroz', 'Ovo Estrelado', 'Bife']
-            .map<DropdownMenuItem<String>>((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(value),
-          );
-        })
-            .toList(),
+              Expanded(
+                child: SizedBox(
+                  height: 300.0,
+                  child:
+                  new ListView.builder(
+                    itemBuilder: (BuildContext context, int index) => EntryItem(data[index]),
+                    itemCount: data.length,
+                ),
+              ),
+                ),
+            ],
+
+      /*
+      new ListView.builder(
+          itemBuilder: (BuildContext context, int index) => EntryItem(data[index]),
+            itemCount: data.length,
+
           ),
+          */
+          /*
           SizedBox(height: 380.0, width: 320.0),
               new RaisedButton(
 
@@ -63,9 +70,8 @@ class TakeawayAsk2State extends State<TakeawayAsk2> {
                   textAlign: TextAlign.center,
                 ),
               ),
-
-          ],
           ),
+          */
           // SizedBox(height: 50.0),
         /*  new Column(
 
@@ -87,9 +93,110 @@ class TakeawayAsk2State extends State<TakeawayAsk2> {
       ],*/
 
           //),
-      ),
 
+     ),
+    ),
     );
 
+  }
+}
+class Entry {
+  Entry(this.title,[this.children = const <Entry>[]]);
+
+  final String title;
+
+  final List<Entry> children;
+
+}
+
+// The entire multilevel list displayed by this app.
+final List<Entry> data = <Entry>[
+  Entry(
+    'Bitoque',
+
+    <Entry>[
+
+      Entry('Batatas Fritas'),
+      Entry('Arroz'),
+      Entry('Ovo Estrelado'),
+      Entry('Salada'),
+
+    ],
+  ),
+   /*Entry(
+    'Chapter B',
+    <Entry>[
+      Entry('Section B0'),
+      Entry('Section B1'),
+    ],
+  ),
+  */
+  /*Entry(
+    'Chapter C',
+    <Entry>[
+      Entry('Section C0'),
+      Entry('Section C1'),
+      Entry(
+        'Section C2',
+        <Entry>[
+          Entry('Item C2.0'),
+          Entry('Item C2.1'),
+
+        ],
+      ),
+    ],
+  ),
+  */
+];
+
+// Displays one Entry. If the entry has children then it's displayed
+// with an ExpansionTile.
+class EntryItem extends StatelessWidget {
+  const EntryItem(this.entry);
+
+  final Entry entry;
+
+  Widget _buildTiles(Entry root) {
+    if (root.children.isEmpty) return Container(
+        child:Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 8.0,
+              horizontal: 32.0,
+            ),
+            child:Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children:[
+                  new Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children:[
+                    Text(root.title),
+                       SizedBox(
+
+                         width:30,
+                        height: 30,
+                         child: FloatingActionButton( onPressed: () => {},
+
+                         tooltip: 'Increment',
+                           child: Icon(Icons.add),
+
+                       ),
+                       ),
+
+                ]
+            ),
+                ]
+            )
+        )
+    );
+    return ExpansionTile(
+      key: PageStorageKey<Entry>(root),
+      title: Text(root.title),
+      children: root.children.map(_buildTiles).toList(),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _buildTiles(entry);
   }
 }
