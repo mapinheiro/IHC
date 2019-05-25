@@ -165,29 +165,37 @@ class EntryItem extends StatelessWidget {
             ),
             child:Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children:[
-                  new Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children:[
+                    children:[
                     Text(root.title),
-                       SizedBox(
+                  Switch(
+                    value:true,
+                    onChanged: (_){},
+                  )
+                ]
+                  ),
+
+
+           /*            SizedBox(
 
                          width:30,
                         height: 30,
                          child: FloatingActionButton( onPressed: () => {},
 
                          tooltip: 'Increment',
-                           child: Icon(Icons.add),
+                           child: Switch(
+                            value: true,
+                            onChanged: False,
+    ),
+                           },
 
                        ),
-                       ),
+                       ),*/
 
-                ]
+
             ),
-                ]
-            )
-        )
-    );
+
+            );
+
     return ExpansionTile(
       key: PageStorageKey<Entry>(root),
       title: Text(root.title),
