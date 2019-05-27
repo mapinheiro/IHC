@@ -47,13 +47,13 @@ class TakeawayFinalState extends State<TakeawayFinal> {
         })
             .toList(),
           ),
-          SizedBox(height: 50.0, width:50.0),
+          SizedBox(height: 80.0, width:80.0),
 
               new Divider(),
-              SizedBox(height: 20.0),
+              SizedBox(height: 10.0),
               Text('Dados do Cliente:', style: TextStyle(color: Colors.red[900], fontSize: 16)),
               //NOME
-              SizedBox(height: 20.0),
+              SizedBox(height: 10.0),
               TextFormField(
                 textCapitalization: TextCapitalization.words,
                 decoration: InputDecoration(
@@ -112,5 +112,96 @@ class TakeawayFinalState extends State<TakeawayFinal> {
 
     );
 
+  }
+}
+
+class Entry {
+  Entry(this.title,[this.children = const <Entry>[]]);
+
+  final String title;
+
+  final List<Entry> children;
+
+}
+
+// The entire multilevel list displayed by this app.
+final List<Entry> data = <Entry>[
+  Entry(
+    'Bitoque',
+
+    <Entry>[
+
+      Entry('Batatas Fritas'),
+      Entry('Arroz'),
+      Entry('Ovo Estrelado'),
+      Entry('Salada'),
+
+    ],
+  ),
+  /*Entry(
+    'Chapter B',
+    <Entry>[
+      Entry('Section B0'),
+      Entry('Section B1'),
+    ],
+  ),
+  */
+  /*Entry(
+    'Chapter C',
+    <Entry>[
+      Entry('Section C0'),
+      Entry('Section C1'),
+      Entry(
+        'Section C2',
+        <Entry>[
+          Entry('Item C2.0'),
+          Entry('Item C2.1'),
+
+        ],
+      ),
+    ],
+  ),
+  */
+];
+
+// Displays one Entry. If the entry has children then it's displayed
+// with an ExpansionTile.
+class EntryItem extends StatelessWidget {
+  const EntryItem(this.entry);
+
+  final Entry entry;
+
+  Widget _buildTiles(Entry root) {
+    if (root.children.isEmpty) return Container(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 8.0,
+          horizontal: 32.0,
+        ),
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(root.title),
+              Switch(
+                value: true,
+                onChanged: (_) {},
+              )
+            ]
+        ),
+
+      ),
+
+    );
+
+    return ExpansionTile(
+      key: PageStorageKey<Entry>(root),
+      title: Text(root.title),
+      children: root.children.map(_buildTiles).toList(),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _buildTiles(entry);
   }
 }

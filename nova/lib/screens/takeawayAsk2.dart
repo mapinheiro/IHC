@@ -6,6 +6,7 @@ import 'package:nova/functions.dart';
   TakeawayAsk2State createState()=> TakeawayAsk2State();
 }
 */
+final a = 1;
 class TakeawayAsk2 extends StatelessWidget  {
   @override
   Widget build (BuildContext context) {
@@ -29,74 +30,73 @@ class TakeawayAsk2 extends StatelessWidget  {
       ),
 
       //Content of tabs
-     body:  new SingleChildScrollView(
-
-      child:
+     body:  new PageView(
+       children: <Widget>[
           new Row(
             children: <Widget>[
               Expanded(
+                flex:40,
                 child: SizedBox(
                   height: 300.0,
+
                   child:
                   new ListView.builder(
                     itemBuilder: (BuildContext context, int index) => EntryItem(data[index]),
                     itemCount: data.length,
+
+
                 ),
               ),
-                ),
+              ),
+               new Divider(),
+               //SizeBox(height:20,width:20),
+               Expanded(
+               flex: 70,
+
+               child: SizedBox(
+                height: 50,
+                width: 50,
+
+
+               child:
+
+               new Column(
+
+                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+               crossAxisAlignment: CrossAxisAlignment.center,
+               children:<Widget>[
+               new RaisedButton(
+
+                  onPressed:() {
+                    Navigator.pushNamed(context,'/takeawayFinal');
+                  },
+                  color: Colors.red[900],
+
+
+                  child: const Text(
+                    'Continuar',
+                    style: TextStyle(fontSize: 30,color:Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+
+                  ),
+                  ],
+                  ),
+               ),
+               ),
+
+      ],
+     ),
+
+
+
+
             ],
 
-      /*
-      new ListView.builder(
-          itemBuilder: (BuildContext context, int index) => EntryItem(data[index]),
-            itemCount: data.length,
-
           ),
-          */
-          /*
-          SizedBox(height: 380.0, width: 320.0),
-              new RaisedButton(
 
-                padding:const EdgeInsets.all(10) ,
-                onPressed:() {
-                  Navigator.pushNamed(context,'/takeawayFinal');
-                },
-                color: Colors.red[900],
-
-
-                child: const Text(
-                  'Continuar',
-                  style: TextStyle(fontSize: 30,color:Colors.white),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-          ),
-          */
-          // SizedBox(height: 50.0),
-        /*  new Column(
-
-            children:<Widget>[
-              new RaisedButton(
-
-                padding:const EdgeInsets.only(left: 10,right:10) ,
-                onPressed:() {
-                  Navigator.pushNamed(context,'/takeawayAsk1');
-                },
-                color: Colors.red[900],
-
-                child: const Text(
-                  'Continuar',
-                  style: TextStyle(fontSize: 30,color:Colors.white),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-      ],*/
-
-          //),
-
-     ),
-    ),
     );
+
 
   }
 }
@@ -174,24 +174,6 @@ class EntryItem extends StatelessWidget {
                 ]
                   ),
 
-
-           /*            SizedBox(
-
-                         width:30,
-                        height: 30,
-                         child: FloatingActionButton( onPressed: () => {},
-
-                         tooltip: 'Increment',
-                           child: Switch(
-                            value: true,
-                            onChanged: False,
-    ),
-                           },
-
-                       ),
-                       ),*/
-
-
             ),
 
             );
@@ -205,6 +187,9 @@ class EntryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _buildTiles(entry);
+
+      return _buildTiles(entry);
+
+
   }
 }
