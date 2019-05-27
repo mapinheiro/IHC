@@ -4,6 +4,15 @@ import 'package:nova/screens/takeawayAsk1.dart';
 class Takeaway extends StatelessWidget {
   @override
   Widget build (BuildContext context) {
+    final takeaway = Hero(
+      tag: 'hero',
+      child: CircleAvatar(
+        backgroundColor : Colors.transparent,
+        radius: 100.0, //tamanho da imagem
+
+        child: Image.asset("assets/takeaway.png"),
+      ),
+    );
     return new Scaffold(
 
       //App Bar
@@ -25,22 +34,21 @@ class Takeaway extends StatelessWidget {
       //Content of tabs
           body: new PageView(
             children: <Widget>[
+
               new Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                 // Spacer(flex:1),
                   new Text(
                       'Não tem nenhum pedido efetuado!',
                       style: TextStyle(fontWeight: FontWeight.bold )
                   ),
-                 //Spacer(flex:1),
+                  takeaway,
                   new RaisedButton(
-
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
                     onPressed:() {
                       Navigator.pushNamed(context,'/takeawayAsk1');
                     },
                     color: Colors.red[900],
-
 //                      child: Container(
 //                        color: Colors.red[900],
                     child: const Text(

@@ -24,7 +24,7 @@ class TakeawayAsk1 extends StatelessWidget {
 
         //Content of tabs
            body: new SingleChildScrollView(
-             padding: const EdgeInsets.symmetric(horizontal: 22.0),
+             padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     //crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -33,18 +33,11 @@ class TakeawayAsk1 extends StatelessWidget {
                       header: Text('Prato'),
                       columns: TabelaColunas,
                       source: PratoDataSource(),
+                      rowsPerPage: 7,
                     ),
+
                     SizedBox(height: 20.0),
-                    SizedBox(
-                      height: 40.0,
-                      width: 200.0,
-                      child: RaisedButton(
-                        color: Colors.transparent,
-                        child: Text('Filtro', style: TextStyle(fontSize: 25, color: Colors.white)),
-                      ),
-                    ),
-                    SizedBox(height: 20.0),
-                    new Column(
+                /*    new Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
                         new RaisedButton(
@@ -65,10 +58,22 @@ class TakeawayAsk1 extends StatelessWidget {
                         ),
                       ],
 
-                    ),
+                    ),*/
                   ],
                 ),
               ),
+
+      floatingActionButton: new FloatingActionButton.extended(
+          shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+          backgroundColor: Colors.red[900],
+          onPressed:() {
+            Navigator.pushNamed(context, '/takeawayAsk2');
+
+          },
+
+          label: Text('Continuar',style: TextStyle(fontSize: 20))
+      ),
+
     );
 
 
@@ -136,18 +141,17 @@ class TakeawayAsk2State extends State<TakeawayAsk2> {
 
 const TabelaColunas = <DataColumn>[
   DataColumn(
-    label: const Text('Nome'),
+    label: const Text('Selecionar Tudo'),
   ),
   DataColumn(
     label: const Text('Preço'),
-    numeric: true,
   )
 ];
 
 class Prato {
   Prato(this.name, this.price, this.tipo);
   final String name;
-  final double price;
+  final String price;
   final String tipo;
   bool selected = false;
 }
@@ -155,14 +159,13 @@ class Prato {
 class PratoDataSource extends DataTableSource {
   int _selectCount = 0;
   final List<Prato> _prato = <Prato>[
-    new Prato('Bife à casa', 7.00, 'Carne'),
-    new Prato('Arroz de Pato', 7.00, 'Carne'),
-    new Prato('Bitoque', 5.0, 'Carne'),
-    new Prato('Picanha', 11.00, 'Carne'),
-    new Prato('Bacalhau à Casa', 7.00, 'Peixe'),
-    new Prato('Lulas Recheadas', 9.00, 'Peixe'),
-    new Prato('Bacalhau com natas', 9.0, 'Peixe'),
-    new Prato('Polvo à Lagareiro', 9.00, 'Peixe'),
+    new Prato('Bife à Pica-Peixe', '7.00€', 'Carne'),
+    new Prato('Arroz de Pato', '7.00€', 'Carne'),
+    new Prato('Picanha', '11.00€', 'Carne'),
+    new Prato('Bacalhau à Casa', '7.00€', 'Peixe'),
+    new Prato('Lulas Recheadas', '9.00€', 'Peixe'),
+    new Prato('Bacalhau com natas','9.00€', 'Peixe'),
+    new Prato('Polvo à Lagareiro', '9.00€', 'Peixe'),
   ];
 
   @override

@@ -31,23 +31,7 @@ class TakeawayFinalState extends State<TakeawayFinal> {
         padding: const EdgeInsets.symmetric(horizontal: 22.0),
         child: new Column(
             children: <Widget>[
-              DropdownButton<String>(
-               value: dropdownValue,
-               onChanged: (String newValue) {
-                 setState(() {
-                   dropdownValue = newValue;
-          });
-        },
-        items: <String>['Bitoque','Batata Frita', 'Arroz', 'Ovo Estrelado', 'Bife']
-            .map<DropdownMenuItem<String>>((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(value),
-          );
-        })
-            .toList(),
-          ),
-          SizedBox(height: 80.0, width:80.0),
+            SizedBox(height: 80.0, width:80.0),
 
               new Divider(),
               SizedBox(height: 10.0),

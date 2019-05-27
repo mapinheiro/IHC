@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:nova/functions.dart';
 
 //String dropdownValue = 'Bitoque';
-/*class TakeawayAsk2 extends StatefulWidget{
+class TakeawayAsk2 extends StatefulWidget{
   TakeawayAsk2State createState()=> TakeawayAsk2State();
 }
-*/
-final a = 1;
-class TakeawayAsk2 extends StatelessWidget  {
-  @override
-  Widget build (BuildContext context) {
-    return new Scaffold(
 
+final a = 1;
+
+class TakeawayAsk2State extends State <TakeawayAsk2> {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
       //App Bar
 
       drawer: Functions.menuL(context),
@@ -19,7 +19,8 @@ class TakeawayAsk2 extends StatelessWidget  {
         title: new Text(
           'Take - Away',
           style: new TextStyle(
-            fontSize: Theme
+            fontSize:
+            Theme
                 .of(context)
                 .platform == TargetPlatform.iOS ? 17.0 : 20.0,
           ),
@@ -30,100 +31,123 @@ class TakeawayAsk2 extends StatelessWidget  {
       ),
 
       //Content of tabs
-     body:  new PageView(
-       children: <Widget>[
-          new Row(
+      body: new SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Expanded(
-                flex:40,
-                child: SizedBox(
-                  height: 300.0,
-
-                  child:
-                  new ListView.builder(
-                    itemBuilder: (BuildContext context, int index) => EntryItem(data[index]),
-                    itemCount: data.length,
-
-
-                ),
-              ),
-              ),
-               new Divider(),
-               //SizeBox(height:20,width:20),
-               Expanded(
-               flex: 70,
-
-               child: SizedBox(
-                height: 50,
-                width: 50,
-
-
-               child:
-
-               new Column(
-
-                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-               crossAxisAlignment: CrossAxisAlignment.center,
-               children:<Widget>[
-               new RaisedButton(
-
-                  onPressed:() {
-                    Navigator.pushNamed(context,'/takeawayFinal');
-                  },
-                  color: Colors.red[900],
-
-
-                  child: const Text(
-                    'Continuar',
-                    style: TextStyle(fontSize: 30,color:Colors.white),
-                    textAlign: TextAlign.center,
-                  ),
-
-                  ),
-                  ],
-                  ),
-               ),
-               ),
-
+        PaginatedDataTable(
+        header: Text('Acompanhamentos'),
+        columns: TabelaColunas,
+        source: AcompanhamentoDataSource(),
+          rowsPerPage: 7,
+      ),
       ],
-     ),
+    ),
+      ),
+      floatingActionButton: new FloatingActionButton.extended(
+          shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+          backgroundColor: Colors.red[900],
+          onPressed:() {
+            Navigator.pushNamed(context, '/takeawayFinal');
 
+          },
 
-
-
-            ],
-
-          ),
+          label: Text('Continuar',style: TextStyle(fontSize: 20))
+      ),
 
     );
-
-
   }
 }
+const TabelaColunas = <DataColumn>[
+  DataColumn(
+    label: const Text('Selecionar tudo'),
+
+  ),
+  DataColumn(
+      label: const Text('Preço')
+  ),
+
+];
+
+class Acompanhamento {
+  Acompanhamento(this.name,this.price);
+  final String name;
+  final String price;
+  bool selected = false;
+}
+
+class AcompanhamentoDataSource extends DataTableSource {
+  int _selectCount = 0;
+  final List<Acompanhamento> _acomp = <Acompanhamento>[
+    new Acompanhamento('Batatas Cozidas','2.00€'),
+    new Acompanhamento('Batatas Fritas','4.00€'),
+    new Acompanhamento('Cenoura e Ervilhas','4.00€'),
+    new Acompanhamento('Arroz Branco','4.00€'),
+    new Acompanhamento('Arroz Feijão Preto','4.00€'),
+    new Acompanhamento('Salada','5.00€'),
+    new Acompanhamento('Migas','4.00€'),
+  ];
+
+  @override
+  DataRow getRow(int index) {
+    if (index >= _acomp.length) return null;
+    final Acompanhamento a = _acomp[index];
+    return DataRow.byIndex(
+        index: index,
+        selected: a.selected,
+        onSelectChanged: (bool value) {
+          if (a.selected != value) {
+            _selectCount += value ? 1 : -1;
+            assert(_selectCount >= 0);
+            a.selected = value;
+          //  _acomp.add(a.selected);
+            notifyListeners();
+          }
+        },
+        cells: <DataCell> [
+          DataCell (Text('${a.name}')),
+          DataCell (Text('${a.price}')),
+        ]
+    );
+  }
+  /* Widget getselectedPlates(Prato p, BuildContext context){
+    if(p.selected == true){
+      return new ListTile(itemBuilder: rowCount))
+    }*/
+//  }
+  @override
+  int get rowCount => _acomp.length;
+
+  @override
+  bool get isRowCountApproximate => false;
+
+  @override
+  int get selectedRowCount => _selectCount;
+}
+/*
+
 class Entry {
-  Entry(this.title,[this.children = const <Entry>[]]);
+  Entry(this.title, [this.children = const <Entry>[]]);
 
   final String title;
 
   final List<Entry> children;
-
 }
 
 // The entire multilevel list displayed by this app.
 final List<Entry> data = <Entry>[
   Entry(
     'Bitoque',
-
     <Entry>[
-
       Entry('Batatas Fritas'),
       Entry('Arroz'),
       Entry('Ovo Estrelado'),
       Entry('Salada'),
-
     ],
   ),
-   /*Entry(
+  /*Entry(
     'Chapter B',
     <Entry>[
       Entry('Section B0'),
@@ -157,26 +181,23 @@ class EntryItem extends StatelessWidget {
   final Entry entry;
 
   Widget _buildTiles(Entry root) {
-    if (root.children.isEmpty) return Container(
-        child:Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 8.0,
-              horizontal: 32.0,
-            ),
-            child:Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children:[
-                    Text(root.title),
-                  Switch(
-                    value:true,
-                    onChanged: (_){},
-                  )
-                ]
-                  ),
-
-            ),
-
-            );
+    if (root.children.isEmpty)
+      return Container(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 8.0,
+            horizontal: 32.0,
+          ),
+          child:
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Text(root.title),
+            Switch(
+              value: true,
+              onChanged: (_) {},
+            )
+          ]),
+        ),
+      );
 
     return ExpansionTile(
       key: PageStorageKey<Entry>(root),
@@ -187,9 +208,7 @@ class EntryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-      return _buildTiles(entry);
-
-
+    return _buildTiles(entry);
   }
 }
+*/
