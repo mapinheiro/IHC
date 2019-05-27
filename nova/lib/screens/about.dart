@@ -37,31 +37,45 @@ class About extends StatelessWidget {
                                      Padding(padding: const EdgeInsets.only(top: 127.0),
                                         child: new FlatButton.icon(
                                             icon: Icon(Icons.call,size:35,color: Colors.red),
-                                            onPressed: () => launch("tel://21312313"),
-                                            label :Text("21312313",style: TextStyle(fontSize: 30)),
+                                            onPressed: () => launch("tel://254595175"),
+                                            label :Text("254595175",style: TextStyle(fontSize: 30)),
                                             ),
                                          ),
                             ),
-                  ],
-                             /*  new Table(
-                                      border: TableBorder.all(),
-                                      children:[
-                                            TableRow(
-                                              children: [
-                                                TableCell(
-                                                  child:
-                                                  Row(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                    children: <Widget>[
-                                                      new Text("a")
-                                                    ],
-                                                  )
-                                                )
-                                              ],
-                                            ),
-                                      ],
-                               ),*/
+                 SizedBox(height: 40),
+                 new Center(
+                   child: Row(
+                     mainAxisAlignment: MainAxisAlignment.center,
+                     crossAxisAlignment: CrossAxisAlignment.center,
+                     children: <Widget>[
+                       GestureDetector(
+                         onTap: () {
+                           launch("https://www.tripadvisor.pt/Restaurant_Review-g3336959-d3619670-Reviews-Restaurante_Pica_Peixe-Sernancelhe_Viseu_District_Northern_Portugal.html");
+                         },
+                         child: CircleAvatar(
+                           radius: 50,
+                           backgroundColor: Colors.transparent,
+                           child: Image.asset('assets/tripadvisor.png'),
+                         ),
+                       ),
+                       SizedBox(width: 10),
+                       GestureDetector(
+                         onTap: () {
+                          launch("https://pt-pt.facebook.com/Restaurante-Pica-Peixe-159885307504935/");
+                         },
+                         child: CircleAvatar(
+                           radius: 35,
+                           backgroundColor: Colors.transparent,
+                           child: Image.asset('assets/facebook.png'),
 
+                         ),
+                       )
+                     ],
+                   ),
+                 ),
+
+
+               ],
                          ),
                 ],
               ),

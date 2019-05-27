@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:nova/functions.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:intl/intl.dart';
+import 'package:nova/screens/takeaway1.dart';
 
 String dropdownValue = 'Bitoque';
 class TakeawayFinal extends StatefulWidget{
   TakeawayFinalState createState()=> TakeawayFinalState();
 }
 class TakeawayFinalState extends State<TakeawayFinal> {
+  String dropdownValue = '';
+  DateTime date1;
+  DateTime time1;
+  DateTime now = DateTime.now();
   @override
   Widget build (BuildContext context) {
+
     return new Scaffold(
 
       //App Bar
@@ -31,13 +39,28 @@ class TakeawayFinalState extends State<TakeawayFinal> {
         padding: const EdgeInsets.symmetric(horizontal: 22.0),
         child: new Column(
             children: <Widget>[
-            SizedBox(height: 80.0, width:80.0),
-
               new Divider(),
               SizedBox(height: 10.0),
-              Text('Dados do Cliente:', style: TextStyle(color: Colors.red[900], fontSize: 16)),
+              Text('Dados do Cliente:', style: TextStyle(color: Colors.red[900], fontSize: 30)),
               //NOME
               SizedBox(height: 10.0),
+              DateTimePickerFormField(
+                inputType: InputType.time,
+                format: DateFormat("HH:mm"),
+                initialTime: TimeOfDay(hour: now.hour, minute: now.minute),
+                editable: false,
+                decoration: InputDecoration(
+                    labelText: 'Hora',
+                    hasFloatingPlaceholder: false
+                ),
+                onChanged: (dt) {
+                  setState(() => time1 = dt);
+                  print('Selected date: $time1');
+                  print('Hour: $time1.hour');
+                  print('Minute: $time1.minute');
+                },
+              ),
+              SizedBox(height:30),
               TextFormField(
                 textCapitalization: TextCapitalization.words,
                 decoration: InputDecoration(
@@ -79,7 +102,8 @@ class TakeawayFinalState extends State<TakeawayFinal> {
 
                 padding:const EdgeInsets.all(10) ,
                 onPressed:() {
-                  Navigator.pushNamed(context,'/homepage');
+                  Navigator.push(context,
+                      new MaterialPageRoute(builder: (context) => Takeaway1()));
                 },
                 color: Colors.red[900],
 

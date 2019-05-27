@@ -87,7 +87,7 @@ class NovaReservaPage extends State<NovaReserva> {
                 helperText: "mais que 25 pessoas ligue-nos, clicando no icon 📞",
                 hintText: 'máximo até 25 pessoas',
                 labelText: 'Número de pessoas',
-                suffixIcon: IconButton(icon: Icon(Icons.phone, color: Colors.red[900]), onPressed: () => launch("tel://213123132"))
+                suffixIcon: IconButton(icon: Icon(Icons.phone, color: Colors.red[900]), onPressed: () => launch("tel://254595175"))
               ),
               style: TextStyle(fontSize: 18),
             ),

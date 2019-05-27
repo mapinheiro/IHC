@@ -40,7 +40,7 @@ class Takeaway extends StatelessWidget {
                 children: <Widget>[
                   new Text(
                       'Não tem nenhum pedido efetuado!',
-                      style: TextStyle(fontWeight: FontWeight.bold )
+                      style: TextStyle(fontSize: 30),textAlign: TextAlign.center,
                   ),
                   takeaway,
                   new RaisedButton(
@@ -49,8 +49,7 @@ class Takeaway extends StatelessWidget {
                       Navigator.pushNamed(context,'/takeawayAsk1');
                     },
                     color: Colors.red[900],
-//                      child: Container(
-//                        color: Colors.red[900],
+//
                     child: const Text(
                           'Criar Pedido',
                           style: TextStyle(fontSize: 30,color:Colors.white),

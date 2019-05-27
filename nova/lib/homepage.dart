@@ -6,7 +6,8 @@ final logo = Hero(
   tag: 'hero',
   child: CircleAvatar(
     backgroundColor : Colors.transparent,
-    radius: 100.0, //tamanho da imagem
+    radius: 70.0,
+    //tamanho da imagem
     child: Image.asset("assets/picapeixe.png"),
   ),
 );
@@ -21,7 +22,7 @@ List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
 
 List<Widget> _tiles = const <Widget>[
 
-const _HomeTile(Colors.grey, Icons.restaurant,"Ementa",'/ementa'),
+const _HomeTile(Colors.grey, Icons.restaurant_menu,"Ementa",'/ementa'),
 const _HomeTile(Colors.grey, Icons.restaurant,"Take-Away",'/takeaway'),
 const _HomeTile(Colors.grey, Icons.calendar_today,"Reserva",'/reserva'),
 const _HomeTile(Colors.grey, Icons.info_outline,"Info",'/about'),
@@ -34,24 +35,47 @@ class Home extends StatelessWidget {
     return new Scaffold(
       drawer: Functions.menuL(context),
         appBar: new AppBar(
-          title: new Text('Pica-Peixe'),
+          title: new Text('Restaurante Pica-Peixe'),
 
         ),
         body:
-        new Padding(
-            padding: const EdgeInsets.only(top: 127.0),
-            child: new StaggeredGridView.count(
-              crossAxisCount: 2,
-              staggeredTiles: _staggeredTiles,
-              children:
-                _tiles,
-              mainAxisSpacing: 4.0,
-              crossAxisSpacing: 4.0,
-              padding: const EdgeInsets.all(14.0),
+           new Padding(
+           padding: const EdgeInsets.all(1.0),
+
+        child: new StaggeredGridView.count(
+          crossAxisCount: 2,
+          staggeredTiles: _staggeredTiles,
+          children: <Widget>[
+
+            _logo(),
+
+            _HomeTile(Colors.grey, Icons.restaurant_menu,"Ementa",'/ementa'),
+            _HomeTile(Colors.grey, Icons.restaurant,"Take-Away",'/takeaway'),
+            _HomeTile(Colors.grey, Icons.calendar_today,"Reserva",'/reserva'),
+            _HomeTile(Colors.grey, Icons.info_outline,"Info",'/about'),
+          ],
+
+          mainAxisSpacing: 10.0,
+          crossAxisSpacing: 10.0,
+          padding: const EdgeInsets.all(50.0),
+        )
+    ),
 
 
-            )));
+
+    );
+
   }
+}
+
+class _logo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context){
+    return logo;
+  }
+
+
+
 }
 
 class _HomeTile extends StatelessWidget {
@@ -84,6 +108,7 @@ class _HomeTile extends StatelessWidget {
 
                   iconData,
                   color: Colors.white,
+                  size:40,
                 ),
                 Text(text, style: TextStyle(
 

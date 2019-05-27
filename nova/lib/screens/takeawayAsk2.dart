@@ -46,17 +46,46 @@ class TakeawayAsk2State extends State <TakeawayAsk2> {
       ],
     ),
       ),
-      floatingActionButton: new FloatingActionButton.extended(
-          shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-          backgroundColor: Colors.red[900],
-          onPressed:() {
-            Navigator.pushNamed(context, '/takeawayFinal');
+      floatingActionButton:
 
-          },
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children:<Widget>[
+          Container(
+              height:20,
+              width: 10),
 
-          label: Text('Continuar',style: TextStyle(fontSize: 20))
+          FloatingActionButton.extended(
+              heroTag: 'btn1',
+
+              shape: BeveledRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0)),
+              backgroundColor: Colors.red[900],
+              onPressed: () {
+                Navigator.pushNamed(context, '/takeaway');
+              },
+
+              label: Text('Cancelar', style: TextStyle(fontSize: 20))
+          ),
+          Container(
+            padding: EdgeInsets.all(10),
+            height: 20,
+            width: 10,
+          ),
+          FloatingActionButton.extended(
+            heroTag: 'btn2',
+            shape: BeveledRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0)),
+            backgroundColor: Colors.red[900],
+            onPressed: () {
+              Navigator.pushNamed(context, '/takeawayFinal');
+            },
+
+            label: Text('Continuar', style: TextStyle(fontSize: 20)),
+          ),
+        ],
       ),
-
     );
   }
 }

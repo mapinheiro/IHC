@@ -12,6 +12,7 @@ import './screens/ementa.dart' as _ementaPage;
 import './screens/ementaPrincipal.dart' as _ementaPrincipalPage;
 import './screens/NovaRerserva.dart' as _NovaReservaPage;
 
+
 import 'package:nova/homepage.dart';
 import 'package:nova/menu.dart';
 void main() => runApp(new MaterialApp(
@@ -61,6 +62,7 @@ void main() => runApp(new MaterialApp(
         builder: (_) => new _takeawayFinalPage.TakeawayFinal(),
         settings: settings,
       );
+
 	case '/ementaPrincipal': return new FromRightToLeft(
           builder:(_) => new _ementaPrincipalPage.EmentaPrincipal(),
           settings:settings

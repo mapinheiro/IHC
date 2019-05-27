@@ -3,41 +3,41 @@ import 'package:nova/functions.dart';
 
 class TakeawayAsk1 extends StatelessWidget {
   @override
-  Widget build (BuildContext context) {
+  Widget build(BuildContext context) {
     return new Scaffold(
 
-        //App Bar
-        drawer: Functions.menuL(context),
-          appBar: new AppBar(
-              title: new Text(
-                  'Take - Away',
-              style: new TextStyle(
-              fontSize: Theme
-              .of(context)
-              .platform == TargetPlatform.iOS ? 17.0 : 20.0,
-              ),
+      //App Bar
+      drawer: Functions.menuL(context),
+      appBar: new AppBar(
+        title: new Text(
+          'Take - Away',
+          style: new TextStyle(
+            fontSize: Theme
+                .of(context)
+                .platform == TargetPlatform.iOS ? 17.0 : 20.0,
           ),
-          elevation: Theme
-              .of(context)
-              .platform == TargetPlatform.iOS ? 0.0 : 4.0,
-    ),
+        ),
+        elevation: Theme
+            .of(context)
+            .platform == TargetPlatform.iOS ? 0.0 : 4.0,
+      ),
 
-        //Content of tabs
-           body: new SingleChildScrollView(
-             padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    //crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    PaginatedDataTable(
-                      header: Text('Prato'),
-                      columns: TabelaColunas,
-                      source: PratoDataSource(),
-                      rowsPerPage: 7,
-                    ),
+      //Content of tabs
+      body: new SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            PaginatedDataTable(
+              header: Text('Prato'),
+              columns: TabelaColunas,
+              source: PratoDataSource(),
+              rowsPerPage: 7,
+            ),
 
-                    SizedBox(height: 20.0),
-                /*    new Column(
+            SizedBox(height: 20.0),
+            /*    new Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
                         new RaisedButton(
@@ -59,84 +59,54 @@ class TakeawayAsk1 extends StatelessWidget {
                       ],
 
                     ),*/
-                  ],
-                ),
-              ),
+          ],
+        ),
+      ),
 
-      floatingActionButton: new FloatingActionButton.extended(
-          shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+      floatingActionButton:
+
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children:<Widget>[
+          Container(
+          height:20,
+          width: 10),
+
+      FloatingActionButton.extended(
+          heroTag: 'btn1',
+
+          shape: BeveledRectangleBorder(
+              borderRadius: BorderRadius.circular(5.0)),
           backgroundColor: Colors.red[900],
-          onPressed:() {
-            Navigator.pushNamed(context, '/takeawayAsk2');
-
+          onPressed: () {
+            Navigator.pushNamed(context, '/takeaway');
           },
 
-          label: Text('Continuar',style: TextStyle(fontSize: 20))
+          label: Text('Cancelar', style: TextStyle(fontSize: 20))
+      ),
+      Container(
+        padding: EdgeInsets.all(10),
+        height: 20,
+        width: 10,
+      ),
+      FloatingActionButton.extended(
+          heroTag: 'btn2',
+          shape: BeveledRectangleBorder(
+              borderRadius: BorderRadius.circular(5.0)),
+          backgroundColor: Colors.red[900],
+          onPressed: () {
+            Navigator.pushNamed(context, '/takeawayAsk2');
+          },
+
+          label: Text('Continuar', style: TextStyle(fontSize: 20)),
+      ),
+      ],
       ),
 
     );
-
-
   }
 }
-/*String dropdownValue = 'One';
-class TakeawayAsk2 extends StatefulWidget{
-  TakeawayAsk2State createState()=> TakeawayAsk2State();
-}
-class TakeawayAsk2State extends State<TakeawayAsk2> {
-
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-
-      //App Bar
-      drawer: Functions.menuL(context),
-      appBar: new AppBar(
-        title: new Text(
-          'Take - Away',
-          style: new TextStyle(
-            fontSize: Theme
-                .of(context)
-                .platform == TargetPlatform.iOS ? 17.0 : 20.0,
-          ),
-        ),
-        elevation: Theme
-            .of(context)
-            .platform == TargetPlatform.iOS ? 0.0 : 4.0,
-      ),
-
-      //Content of tabs
-      body: new PageView(
-        children: <Widget>[
-          new SingleChildScrollView(
-            child:
-            ),
-          ),
-
-          new Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              new RaisedButton(
-
-                padding: const EdgeInsets.only(left: 10, right: 10),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/takeawayAsk1');
-                },
-                color: Colors.red[900],
-
-                child: const Text(
-                  'Continuar',
-                  style: TextStyle(fontSize: 30, color: Colors.white),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}*/
 
 
 const TabelaColunas = <DataColumn>[
@@ -150,6 +120,7 @@ const TabelaColunas = <DataColumn>[
 
 class Prato {
   Prato(this.name, this.price, this.tipo);
+
   final String name;
   final String price;
   final String tipo;
@@ -164,7 +135,7 @@ class PratoDataSource extends DataTableSource {
     new Prato('Picanha', '11.00€', 'Carne'),
     new Prato('Bacalhau à Casa', '7.00€', 'Peixe'),
     new Prato('Lulas Recheadas', '9.00€', 'Peixe'),
-    new Prato('Bacalhau com natas','9.00€', 'Peixe'),
+    new Prato('Bacalhau com natas', '9.00€', 'Peixe'),
     new Prato('Polvo à Lagareiro', '9.00€', 'Peixe'),
   ];
 
@@ -183,13 +154,14 @@ class PratoDataSource extends DataTableSource {
             notifyListeners();
           }
         },
-        cells: <DataCell> [
-          DataCell (Text('${pratos.name}')),
-          DataCell (Text('${pratos.price}')),
+        cells: <DataCell>[
+          DataCell(Text('${pratos.name}')),
+          DataCell(Text('${pratos.price}')),
         ]
     );
   }
- /* Widget getselectedPlates(Prato p, BuildContext context){
+
+  /* Widget getselectedPlates(Prato p, BuildContext context){
     if(p.selected == true){
       return new ListTile(itemBuilder: rowCount))
     }*/
