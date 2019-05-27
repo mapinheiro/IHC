@@ -9,6 +9,8 @@ import './screens/takeawayAsk2.dart' as _takeawayAsk2Page;
 import './screens/takeawayFinal.dart' as _takeawayFinalPage;
 import './screens/reserva.dart' as _reservaPage;
 import './screens/ementa.dart' as _ementaPage;
+import './screens/ementaPrincipal.dart' as _ementaPrincipalPage;
+import './screens/NovaRerserva.dart' as _NovaReservaPage;
 
 import 'package:nova/homepage.dart';
 import 'package:nova/menu.dart';
@@ -59,6 +61,15 @@ void main() => runApp(new MaterialApp(
         builder: (_) => new _takeawayFinalPage.TakeawayFinal(),
         settings: settings,
       );
+	case '/ementaPrincipal': return new FromRightToLeft(
+          builder:(_) => new _ementaPrincipalPage.EmentaPrincipal(),
+          settings:settings
+      );
+	case '/NovaReserva': return new FromRightToLeft(
+        builder: (_) => new _NovaReservaPage.NovaReserva(),
+        settings: settings,
+      );
+
     }
   },
   // routes: <String, WidgetBuilder> {
@@ -160,128 +171,3 @@ class TabsState extends State<Tabs> {
         ),
       );
 }
-      /*
-      //Content of tabs
-      body: new PageView(
-        controller: _tabController,
-        onPageChanged: onTabChanged,
-        children: <Widget>[
-          new _firstTab.Home(),
-          new _secondTab.Dashboard(),
-          new _thirdTab.Settings()
-        ],
-      ),
-      */
-      //Tabs
-    /*
-      bottomNavigationBar: Theme.of(context).platform == TargetPlatform.iOS ?
-      new CupertinoTabBar(
-        activeColor: Colors.blueGrey,
-        currentIndex: _tab,
-        onTap: onTap,
-        items: TabItems.map((TabItem) {
-          return new BottomNavigationBarItem(
-            title: new Text(TabItem.title),
-            icon: new Icon(TabItem.icon),
-          );
-        }).toList(),
-      ):*/
-      /*new BottomNavigationBar(
-        currentIndex: _tab,
-        onTap: onTap,
-        items: TabItems.map((TabItem) {
-          return new BottomNavigationBarItem(
-            title: new Text(TabItem.title),
-            icon: new Icon(TabItem.icon),
-          );
-        }).toList(),
-      ),*/
-
-      //Drawer
-/*      drawer: new Drawer(
-          child: new ListView(
-            children: <Widget>[
-              new Container(
-                height: 120.0,
-                child: new DrawerHeader(
-                  padding: new EdgeInsets.all(0.0),
-                  decoration: new BoxDecoration(
-                    color: new Color(0xFFECEFF1),
-                  ),
-                  child: new Center(
-                    child: new FlutterLogo(
-                      colors: Colors.orange,
-                      size: 54.0,
-                    ),
-                  ),
-                ),
-              ),
-              new ListTile(
-                  leading: new Icon(Icons.accessibility),
-                  title: new Text('Reservar'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.of(context).pushNamed('/support');
-                  }
-              ),
-              new ListTile(
-                  leading: new Icon(Icons.chat),
-                  title: new Text('Support'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.of(context).pushNamed('/support');
-                  }
-              ),
-              new Divider(),
-              new ListTile(
-                  leading: new Icon(Icons.info),
-                  title: new Text('About'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.of(context).pushNamed('/about');
-                  }
-              ),
-            ],
-          )
-      )
-  );
-
-  void onTap(int tab){
-    _tabController.jumpToPage(tab);
-  }
-
-  void onTabChanged(int tab) {
-    setState((){
-      this._tab = tab;
-    }); */
-
-  /*
-    switch (tab) {
-      case 0:
-        this._title_app = TabItems[0].title;
-        break;
-
-      case 1:
-        this._title_app = TabItems[1].title;
-        break;
-
-      case 2:
-        this._title_app = TabItems[2].title;
-        break;
-    }*/
-  //}
-//}
-
-/*
-class TabItem {
-  const TabItem({ this.title, this.icon });
-  final String title;
-  final IconData icon;
-}
-
-const List<TabItem> TabItems = const <TabItem>[
-  const TabItem(title: 'Home', icon: Icons.home),
-  const TabItem(title: 'Dashboard', icon: Icons.dashboard),
-  const TabItem(title: 'Settings', icon: Icons.settings)
-];
-*/

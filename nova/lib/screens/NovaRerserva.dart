@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:nova/functions.dart';
-class NovaReserva extends StatelessWidget {
+import 'package:intl/intl.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:nova/screens/Reserva1.dart';
 
-  //String _nome;
-  //String _contacto;
+
+class NovaReserva extends StatefulWidget {
+
+  NovaReservaPage createState() => NovaReservaPage();
+
+}
+
+class NovaReservaPage extends State<NovaReserva> {
   String dropdownValue = '';
+  DateTime date1;
+  DateTime time1;
+  DateTime now = DateTime.now();
 
   @override
   Widget build (BuildContext context) {
@@ -33,56 +44,50 @@ class NovaReserva extends StatelessWidget {
           children: <Widget>[
             //DATA
             SizedBox(height: 20.0),
-            RaisedButton(
-                color: Colors.red[900],
-                child: Text('Seleciona uma Data'),
-              onPressed: (){
-                  showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(2019),
-                      lastDate: DateTime(2021),
-                  ).then<DateTime>((DateTime value){
-                    if(value != null) {
-                      Scaffold.of(context).showSnackBar(
-                          SnackBar(content: Text('Selecionou: $value')),
-                      );
-                    }
-                  });
+
+            DateTimePickerFormField(
+              inputType: InputType.date,
+              format: DateFormat("yyyy-MM-dd"),
+              initialDate: DateTime.now(),
+              editable: false,
+              decoration: InputDecoration(
+                  labelText: 'Data',
+                  hasFloatingPlaceholder: false
+              ),
+              onChanged: (dt) {
+                setState(() => date1 = dt);
+                print('Selected date: $date1');
               },
             ),
             //HORA
             SizedBox(height: 20.0),
-            RaisedButton(
-              color: Colors.red[900],
-              child: Text('Horas'),
-              onPressed: () {
-                DateTime now = DateTime.now();
-                showTimePicker(
-                    context: context,
-                    initialTime: TimeOfDay(hour: now.hour, minute: now.minute),
-                ).then<TimeOfDay>((TimeOfDay value) {
-                  if (value != null) {
-                    Scaffold.of(context).showSnackBar(
-                      SnackBar(
-                          content: Text('${value.format(context)}'),
-                          action: SnackBarAction(label: 'OK', onPressed: () {}),
-                      ),
-                    );
-                  }
-                });
+            DateTimePickerFormField(
+              inputType: InputType.time,
+              format: DateFormat("HH:mm"),
+              initialTime: TimeOfDay(hour: now.hour, minute: now.minute),
+              editable: false,
+              decoration: InputDecoration(
+                  labelText: 'Hora',
+                  hasFloatingPlaceholder: false
+              ),
+              onChanged: (dt) {
+                setState(() => time1 = dt);
+                print('Selected date: $time1');
+                print('Hour: $time1.hour');
+                print('Minute: $time1.minute');
               },
             ),
             //NUMERO DE PESSOAS Acrecentar um icon de info para informar o clinte do número máximo
-            SizedBox(height: 20.0),
+            SizedBox(height: 20.0, width: 10.0),
             TextFormField(
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
                 //filled: true,
                 //icon: Icon(Icons.phone),
+                helperText: "mais que 25 pessoas ligue-nos, clicando no icon 📞",
                 hintText: 'máximo até 25 pessoas',
                 labelText: 'Número de pessoas',
+                suffixIcon: IconButton(icon: Icon(Icons.phone, color: Colors.red[900]), onPressed: () => launch("tel://213123132"))
               ),
               style: TextStyle(fontSize: 18),
             ),
@@ -101,9 +106,6 @@ class NovaReserva extends StatelessWidget {
                 labelText: 'Nome',
               ),
               style: TextStyle(fontSize: 18),
-             /* onSaved: (String tmp) {
-                this._nome = tmp;
-              },*/
             ),
             //CONTACTO
             SizedBox(height: 20.0),
@@ -117,9 +119,6 @@ class NovaReserva extends StatelessWidget {
                 labelText: 'Contacto',
               ),
               style: TextStyle(fontSize: 18),
-              /* onSaved: (String tmp) {
-                this._contacto = tmp;
-              },*/
             ),
             SizedBox(height: 50.0, width: 10.0),
             Row(
@@ -128,16 +127,21 @@ class NovaReserva extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 new RaisedButton(
-                  color: Colors.red[900],
-                  child: Text('Reservar',
-                    style: TextStyle(fontSize: 20, color: Colors.white)),
+                    color: Colors.red[900],
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+                    child: Text('Cancelar',
+                        style: TextStyle(fontSize: 25, color: Colors.white)),
                     onPressed: ()=> Navigator.pushNamed(context,'/homepage')
                 ),
                 new RaisedButton(
                   color: Colors.red[900],
-                  child: Text('Cancelar',
-                      style: TextStyle(fontSize: 20, color: Colors.white)),
-                  onPressed:()=> Navigator.pushNamed(context,'/reserva'),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+                  child: Text('Reservar',
+                      style: TextStyle(fontSize: 25, color: Colors.white)),
+                  onPressed:() {
+                      Navigator.push(context,
+                        new MaterialPageRoute(builder: (context) => Reserva1()));
+                  },
                 )
               ],
             ),

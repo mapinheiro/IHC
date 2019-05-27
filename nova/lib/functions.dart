@@ -37,7 +37,7 @@ class Functions {
                 title: new Text('Ementa'),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.of(context).pushNamed('/ementa');
+                  Navigator.of(context).pushNamed('/ementaPrincipal');
                 }
             ),
            new ListTile(

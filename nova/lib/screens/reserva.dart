@@ -33,6 +33,7 @@ class Reserva extends StatelessWidget {
               //BUTTON
               new SizedBox(height: 60.0, width: 200.0,
                child: new RaisedButton(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
                   color: Colors.red[900],
                   onPressed: () {
                     Navigator.push(
