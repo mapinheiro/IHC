@@ -22,7 +22,7 @@ List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
 
 List<Widget> _tiles = const <Widget>[
 
-const _HomeTile(Colors.grey, Icons.restaurant_menu,"Ementa",'/ementa'),
+const _HomeTile(Colors.grey, Icons.restaurant_menu,"Ementa",'/ementaPrincipal'),
 const _HomeTile(Colors.grey, Icons.restaurant,"Take-Away",'/takeaway'),
 const _HomeTile(Colors.grey, Icons.calendar_today,"Reserva",'/reserva'),
 const _HomeTile(Colors.grey, Icons.info_outline,"Info",'/about'),
@@ -49,7 +49,7 @@ class Home extends StatelessWidget {
 
             _logo(),
 
-            _HomeTile(Colors.grey, Icons.restaurant_menu,"Ementa",'/ementa'),
+            _HomeTile(Colors.grey, Icons.restaurant_menu,"Ementa",'/ementaPrincipal'),
             _HomeTile(Colors.grey, Icons.restaurant,"Take-Away",'/takeaway'),
             _HomeTile(Colors.grey, Icons.calendar_today,"Reserva",'/reserva'),
             _HomeTile(Colors.grey, Icons.info_outline,"Info",'/about'),
