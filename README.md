@@ -1,2 +1,2 @@
 # IHC
-picaPeixe
+Pica - Peixe Restaurant App
